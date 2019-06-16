@@ -1,7 +1,5 @@
-import {Controller} from "../controller";
-
 export function InjectService(service: any) {
-    return function (target: Controller, propertyName: string) {
+    return function (target: any, propertyName: string) {
 
         Object.defineProperty(target, propertyName, {
             get: () => {

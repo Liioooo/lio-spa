@@ -4,8 +4,10 @@ export abstract class Controller extends HTMLElement {
 
     private static readonly __selector?: string;
     private static readonly __styles?: string;
+    private static readonly __isApplicationRoot?: boolean;
+    private static readonly __allCustomElements: string[];
 
-    readonly renderRoot: ShadowRoot;
+    private readonly _renderRoot: ShadowRoot;
 
     private _needsSytleInsertion = true;
 
@@ -19,7 +21,7 @@ export abstract class Controller extends HTMLElement {
         if (this.constructor.prototype.hasOwnProperty('onChanges')) {
             this['onChanges'](name, oldValue, newValue);
         }
-        this.updateDOM();
+        this.updateOwnDOM();
     }
 
     private disconnectedCallback() {
@@ -29,17 +31,20 @@ export abstract class Controller extends HTMLElement {
     }
 
     private initialize() {
-        (this as {renderRoot: ShadowRoot}).renderRoot = this.attachShadow({mode: "open"});
-        this.updateDOM();
+        (this as any as {_renderRoot: ShadowRoot})._renderRoot = this.attachShadow({mode: "open"});
+        if((this.constructor as typeof Controller).__isApplicationRoot) {
+            this.setAttribute('applictation_root_comp', '');
+        }
+        this.updateOwnDOM();
         if (this.constructor.prototype.hasOwnProperty('onInit')) {
             this['onInit']();
         }
     }
 
-    protected updateDOM() {
+    protected updateOwnDOM() {
         const templateResult = this.render();
         if (templateResult instanceof TemplateResult) {
-            render(templateResult, this.renderRoot, {eventContext: this});
+            render(templateResult, this._renderRoot, {eventContext: this});
         }
 
         const stylesText = (this.constructor as typeof Controller).__styles;
@@ -49,11 +54,21 @@ export abstract class Controller extends HTMLElement {
         }
     }
 
+    public updateChildrenDOM() {
+        this.updateOwnDOM();
+        (this.constructor as typeof Controller).__allCustomElements.forEach(element => {
+           const domEntries = this._renderRoot.querySelectorAll(element);
+           domEntries.forEach((entry: Controller) => {
+               entry.updateChildrenDOM();
+           })
+        });
+    }
+
     private insertCss(css: string) {
         let styles = document.createElement('style');
         styles.setAttribute('type', 'text/css');
         styles.appendChild(document.createTextNode(css));
-        this.renderRoot.appendChild(styles);
+        this._renderRoot.appendChild(styles);
     }
 
     protected render(): TemplateResult | void {
