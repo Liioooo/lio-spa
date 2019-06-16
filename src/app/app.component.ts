@@ -4,6 +4,8 @@ import {html, TemplateResult} from "lit-html";
 import {Input} from "../../spa-lib/decorators/input-decorator";
 import {OnChanges} from "../../spa-lib/lifecycle/on-changes";
 import {OnInit} from "../../spa-lib/lifecycle/on-init";
+import {InjectService} from "../../spa-lib/decorators/inject-service-decorator";
+import {ApiService} from "./services/api-service";
 
 @Component({
     selector: 'app-root',
@@ -14,6 +16,8 @@ export class AppComponent extends Controller implements OnInit, OnChanges {
     @Input()
     private input: string;
 
+    @InjectService(ApiService)
+    apiService: ApiService;
 
     onInit(): void {
         console.log('init');
@@ -24,15 +28,13 @@ export class AppComponent extends Controller implements OnInit, OnChanges {
     }
 
     handleClick(e: MouseEvent) {
-        console.log(e);
+        this.apiService.setData('other data');
+        this.updateDOM();
+        //console.log(e);
     }
 
     handleOutput(e) {
         console.log(e);
-    }
-
-    handleOutput2(e) {
-        console.log(e, 2);
     }
 
     render(): TemplateResult {
@@ -40,7 +42,7 @@ export class AppComponent extends Controller implements OnInit, OnChanges {
             <div>
                 <p>${this.input}</p>
                 <button @click="${this.handleClick}">click</button>
-                <app-home @testOutput="${this.handleOutput}" @testOutput2="${this.handleOutput2}"></app-home>
+                <app-home @testOutput="${this.handleOutput}"></app-home>
             </div>
         `;
     }

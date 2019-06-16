@@ -5,7 +5,7 @@ export abstract class Controller extends HTMLElement {
     private static readonly __selector?: string;
     private static readonly __styles?: string;
 
-    readonly renderRoot: Element | DocumentFragment;
+    readonly renderRoot: ShadowRoot;
 
     private _needsSytleInsertion = true;
 
@@ -19,7 +19,7 @@ export abstract class Controller extends HTMLElement {
         if (this.constructor.prototype.hasOwnProperty('onChanges')) {
             this['onChanges'](name, oldValue, newValue);
         }
-        this.rerender();
+        this.updateDOM();
     }
 
     private disconnectedCallback() {
@@ -29,14 +29,14 @@ export abstract class Controller extends HTMLElement {
     }
 
     private initialize() {
-        (this as {renderRoot: Element | DocumentFragment}).renderRoot = this.attachShadow({mode: "open"});
-        this.rerender();
+        (this as {renderRoot: ShadowRoot}).renderRoot = this.attachShadow({mode: "open"});
+        this.updateDOM();
         if (this.constructor.prototype.hasOwnProperty('onInit')) {
             this['onInit']();
         }
     }
 
-    protected rerender() {
+    protected updateDOM() {
         const templateResult = this.render();
         if (templateResult instanceof TemplateResult) {
             render(templateResult, this.renderRoot, {eventContext: this});
