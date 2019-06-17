@@ -4,7 +4,7 @@ import {html, TemplateResult} from "lit-html";
 import {InjectService} from "../../../../spa-lib/decorators/inject-service-decorator";
 import {ApiService} from "../../services/api-service";
 import {OnInit} from "../../../../spa-lib/lifecycle/on-init";
-import {Router} from "../../../../spa-lib/router";
+import {Router} from "../../../../spa-lib/router/router";
 
 @Component({
     selector: 'app-home',
@@ -21,11 +21,16 @@ export class HomeComponent extends Controller implements OnInit{
     onInit(): void {
     }
 
+    nav() {
+        this.router.navigate('/site2', 'kek')
+    }
+
     render(): TemplateResult {
         return html`
             <div>
                 <p>Home</p>
                 <p>${this.apiService.getData()}</p>
+                <button @click="${this.nav}">to Site2</button>
             </div>
         `;
     }

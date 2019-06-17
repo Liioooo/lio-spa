@@ -1,5 +1,5 @@
 import {AppConfig} from "./interfaces";
-import {Router} from "./router";
+import {Router} from "./router/router";
 
 export function runApp(config: AppConfig) {
     const router: Router = (Router as any as {getInstance: any}).getInstance();
