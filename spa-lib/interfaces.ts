@@ -10,4 +10,5 @@ export interface Route {
     path: string;
     component?: typeof Controller;
     redirectTo?: string;
+    lazyLoadRoute?: () => Promise<typeof Controller>;
 }

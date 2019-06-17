@@ -2,13 +2,11 @@ import {HomeComponent} from "./app/components/home/home.component";
 import {AppComponent} from "./app/app.component";
 import {runApp} from "../spa-lib/core";
 import {ApiService} from "./app/services/api-service";
-import {Site2Component} from "./app/components/site2/site2.component";
 
 runApp({
     components: [
         AppComponent,
-        HomeComponent,
-        Site2Component
+        HomeComponent
     ],
     services: [
         ApiService,
@@ -16,6 +14,6 @@ runApp({
     routes: [
         {path: '/', redirectTo: '/home'},
         {path: '/home', component: HomeComponent},
-        {path: '/site2', component: Site2Component}
+        {path: '/site2', lazyLoadRoute: () => import('./site2.page').then(page => page.routeRootComp)}
     ]
 });

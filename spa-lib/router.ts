@@ -32,7 +32,7 @@ export class Router {
         });
     }
 
-    private matchRoute(path: string): string {
+    private async matchRoute(path: string): Promise<string> {
         const found = this._routes.find(route => route.path === path);
         if (!found) {
             throw Error(`Route with path: ${path} couldn't be matched`);
@@ -40,14 +40,19 @@ export class Router {
         if(found.redirectTo) {
             return this.matchRoute(found.redirectTo);
         }
-        if(!found.component) {
+
+        if (found.component) {
+            return (found.component as any as {__selector: string}).__selector;
+        } else if (found.lazyLoadRoute) {
+            const lazyComponent = await found.lazyLoadRoute();
+            return (lazyComponent as any as {__selector: string}).__selector;
+        } else {
             throw Error(`Route with path: ${path} couldn't be matched`);
         }
-        return (found.component as any as {__selector: string}).__selector;
     }
 
-    public navigate(path: string, param: any) {
-        this._activeRouteElementSelector = this.matchRoute(path);
+    public async navigate(path: string, param: any) {
+        this._activeRouteElementSelector = await this.matchRoute(path);
         this._currentRouteParam = param;
         this.renderRoute();
     }

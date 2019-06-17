@@ -19,7 +19,6 @@ export class HomeComponent extends Controller implements OnInit{
     router: Router;
 
     onInit(): void {
-        console.log(this.router.currentRouteParam);
     }
 
     render(): TemplateResult {
