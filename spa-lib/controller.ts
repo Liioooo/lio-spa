@@ -13,6 +13,9 @@ export abstract class Controller extends HTMLElement {
 
     protected constructor() {
         super();
+    }
+
+    private connectedCallback() {
         this.initialize();
     }
 

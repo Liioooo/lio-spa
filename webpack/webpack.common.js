@@ -48,6 +48,18 @@ module.exports = {
                 ],
                 exclude: /node_modules/
             },
+            {
+                test: /\.js$/,
+                include: [
+                    path.join(__dirname, '..', 'node_modules/lit-html'),
+                ],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            }
         ]
     },
     plugins: [

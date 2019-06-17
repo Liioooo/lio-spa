@@ -2,7 +2,6 @@ import {Service} from "../decorators/service-decorator";
 import {CanActivateResult, Route} from "../interfaces";
 import {InjectService} from "../decorators/inject-service-decorator";
 import {ApplicationService} from "../application-service";
-import {ActivationDeniedError} from "./activation-denied-error";
 
 @Service()
 export class Router {
