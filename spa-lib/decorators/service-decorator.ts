@@ -2,6 +2,8 @@ export function Service() {
     return function (target: Function) {
 
         const original = target;
+
+        // used to prevent instanciation with new keyword
         const instanciatedWithGetInstanceId = Symbol();
 
 

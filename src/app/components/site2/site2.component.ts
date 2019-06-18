@@ -15,7 +15,6 @@ export class Site2Component extends Controller implements OnInit {
     @InjectService(ApiService)
     apiService: ApiService;
 
-
     @InjectService(Router)
     router: Router;
 

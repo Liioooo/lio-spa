@@ -1,16 +1,17 @@
 import {Controller} from '../controller';
+import {ControllerConstructorIntern} from '../controller-constructor-intern';
 
 export function Input() {
     return function (target: Controller, propertyName: string) {
 
-        if (!target.constructor['__inputs']) {
-            target.constructor['__inputs'] = [];
+        if (!(target.constructor as ControllerConstructorIntern).__inputs) {
+            (target.constructor as ControllerConstructorIntern).__inputs = [];
             Object.defineProperty(target.constructor, 'observedAttributes', {
-                get: () => target.constructor['__inputs']
+                get: () => (target.constructor as ControllerConstructorIntern).__inputs
             });
         }
 
-        (target.constructor['__inputs'] as string[]).push(propertyName);
+        (target.constructor as ControllerConstructorIntern).__inputs.push(propertyName);
 
     };
 }

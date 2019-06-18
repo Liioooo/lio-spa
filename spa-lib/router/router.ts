@@ -2,6 +2,7 @@ import {Service} from '../decorators/service-decorator';
 import {CanActivateResult, Route} from '../interfaces';
 import {InjectService} from '../decorators/inject-service-decorator';
 import {ApplicationService} from '../application-service';
+import {ControllerConstructorIntern} from '../controller-constructor-intern';
 
 @Service()
 export class Router {
@@ -15,10 +16,19 @@ export class Router {
     @InjectService(ApplicationService)
     private appService: ApplicationService;
 
+    /**
+     * @return parameter for the current route
+     */
     get currentRouteParam(): unknown {
         return this._currentRouteParam;
     }
 
+    /**
+     * Initialzes the Router, should not be called by the framework user
+     * @param routes
+     * @param routerOutletTagName
+     * @private
+     */
     public _initRouting(routes: Route[], routerOutletTagName = 'router-outlet') {
         if (this._routes) {
             throw Error('This method should only be called once');
@@ -57,15 +67,21 @@ export class Router {
 
     private async getSelector(route: Route): Promise<string> {
         if (route.component) {
-            return (route.component as unknown as {__selector: string}).__selector;
+            return (route.component as unknown as ControllerConstructorIntern).__selector;
         } else if (route.lazyLoadRoute) {
             const lazyComponent = await route.lazyLoadRoute();
-            return (lazyComponent as unknown as {__selector: string}).__selector;
+            return (lazyComponent as unknown as ControllerConstructorIntern).__selector;
         } else {
             throw Error(`Route with path: ${route.path} couldn't be matched`);
         }
     }
 
+    /**
+     * navigates to the given route with the given parameter
+     * @param path
+     * @param param route-parameter
+     * @return Promise just for internal use, can be ignored
+     */
     public async navigate(path: string, param?: unknown) {
         const foundRoute = this.matchRoute(path, param);
         const guardResult = this.checkGuard(foundRoute);
@@ -87,6 +103,11 @@ export class Router {
         }
     }
 
+    /**
+     * navigates to the given route, url should be formated like in the url, but
+     * without the trailing '/#'
+     * @param url
+     */
     public navigateByUrl(url: string) {
         if (url === this._currentUrl) {
             return;

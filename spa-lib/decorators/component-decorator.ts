@@ -1,3 +1,5 @@
+import {ControllerConstructorIntern} from '../controller-constructor-intern';
+
 export function Component(config: {
     selector: string,
     styles?: string,
@@ -7,6 +9,7 @@ export function Component(config: {
 
         const original = target;
 
+        // define static properties
         Object.defineProperties(original, {
             __selector: {
                 value: config.selector,
@@ -22,10 +25,11 @@ export function Component(config: {
             }
         });
 
+        // push selector to static __allCustomElements property
         if (!Object.getPrototypeOf(original).__allCustomElements) {
             Object.getPrototypeOf(original).__allCustomElements = [];
         }
-        (Object.getPrototypeOf(original) as {__allCustomElements: string[]}).__allCustomElements.push(config.selector);
+        (Object.getPrototypeOf(original) as ControllerConstructorIntern).__allCustomElements.push(config.selector);
 
         window.customElements.define(config.selector, original);
 

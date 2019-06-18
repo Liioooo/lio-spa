@@ -5,15 +5,33 @@ import {OnInit} from './lifecycle/on-init';
 
 export abstract class Controller extends HTMLElement {
 
+    /**
+     * components element-selector
+    */
     private static readonly __selector?: string;
+
+    /**
+     * components styles as string
+     */
     private static readonly __styles?: string;
+
     private static readonly __isApplicationRoot?: boolean;
+
+
+    /**
+     *  static property containing all custom-elements selectors
+     *  used by updateChildrenDOM()
+     */
     private static readonly __allCustomElements: string[];
 
-    private readonly _renderRoot: Element | DocumentFragment;
 
+    private readonly _renderRoot: ShadowRoot;
+
+    /**
+     * Defines if styles need to be inserted on first render, if
+     * adoptive stylesheets are not supported
+     */
     private _needsSytleInsertion = false;
-    private _styleSheet?: CSSStyleSheet | null;
 
     private static readonly _supportsAdoptingStyleSheets =
         ('adoptedStyleSheets' in Document.prototype) &&
@@ -57,15 +75,13 @@ export abstract class Controller extends HTMLElement {
     }
 
     private get styleSheet(): CSSStyleSheet|null {
-        if (this._styleSheet === undefined) {
-            if ((this.constructor as typeof Controller)._supportsAdoptingStyleSheets) {
-                this._styleSheet = new CSSStyleSheet();
-                (this._styleSheet as any).replaceSync((this.constructor as typeof Controller).__styles);
-            } else {
-                this._styleSheet = null;
-            }
+        if ((this.constructor as typeof Controller)._supportsAdoptingStyleSheets) {
+            const styleSheet = new CSSStyleSheet();
+            (styleSheet as any).replaceSync((this.constructor as typeof Controller).__styles);
+            return styleSheet;
+        } else {
+            return null;
         }
-        return this._styleSheet;
     }
 
     private firstRender() {
@@ -78,9 +94,8 @@ export abstract class Controller extends HTMLElement {
             (this as any as OnInit).onInit();
         }
 
-        // When native Shadow DOM is used but adoptedStyles are not supported,
-        // insert styling after rendering to ensure adoptedStyles have highest
-        // priority.
+        // When adoptedStyles are not supported, insert styling after rendering to
+        // ensure adoptedStyles have highest priority.
         const stylesText = (this.constructor as typeof Controller).__styles;
         if (stylesText && this._needsSytleInsertion) {
             this.insertCss(stylesText);
