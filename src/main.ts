@@ -17,5 +17,5 @@ runApp({
         {path: '/home', component: HomeComponent},
         {path: '/site2', lazyLoadRoute: () => import('./site2.page').then((page) => page.routeRootComp), canActivate: Site2Guard}
     ],
-    enableRouting: false
+    enableRouting: true
 });
