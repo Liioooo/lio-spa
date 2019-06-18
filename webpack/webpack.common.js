@@ -26,19 +26,11 @@ module.exports = {
                 ]
             },
             {
-                test:/\.component.scss$/,
+                test:/\.scss$/,
                 use:  [
                     "to-string-loader",
                     { loader: 'css-loader'},
                     { loader: 'sass-loader'},
-                ]
-            },
-            {
-                test:/styles.scss$/,
-                use:  [
-                    MiniCssExtractPlugin.loader,
-                    { loader: 'css-loader', options: { url: false, sourceMap: true } },
-                    { loader: 'sass-loader', options: { sourceMap: true } }
                 ]
             },
             {

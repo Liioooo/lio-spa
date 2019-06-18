@@ -5,6 +5,7 @@ export interface AppConfig {
     services: any[];
     routes?: Route[];
     enableRouting?: boolean;
+    globalStyles?: string;
 }
 
 export interface Route {

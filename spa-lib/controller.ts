@@ -2,6 +2,8 @@ import {render, TemplateResult} from 'lit-html';
 import {OnChanges} from './lifecycle/on-changes';
 import {OnDestroy} from './lifecycle/on-destroy';
 import {OnInit} from './lifecycle/on-init';
+import {InjectService} from './decorators/inject-service-decorator';
+import {StylesService} from './styles-service';
 
 export abstract class Controller extends HTMLElement {
 
@@ -33,9 +35,8 @@ export abstract class Controller extends HTMLElement {
      */
     private _needsSytleInsertion = false;
 
-    private static readonly _supportsAdoptingStyleSheets =
-        ('adoptedStyleSheets' in Document.prototype) &&
-        ('replace' in CSSStyleSheet.prototype);
+    @InjectService(StylesService)
+    private _stylesService: StylesService;
 
     protected constructor() {
         super();
@@ -48,7 +49,7 @@ export abstract class Controller extends HTMLElement {
 
     private attributeChangedCallback(name: string, oldValue: unknown, newValue: unknown) {
         this[name] = newValue;
-        if (this.constructor.prototype.hasOwnProperty('onChanges')) {
+        if (this.constructor.prototype.hasOwnProperty('onChanges') && oldValue !== newValue) {
             (this as any as OnChanges).onChanges(name, oldValue, newValue);
         }
         this.updateOwnDOM();
@@ -67,20 +68,19 @@ export abstract class Controller extends HTMLElement {
         // (1) shadowRoot.adoptedStyleSheets available: use it.
         // (2) shadowRoot.adoptedStyleSheets polyfilled: append styles after
         // rendering
-        if ((this.constructor as typeof Controller)._supportsAdoptingStyleSheets) {
-            (this._renderRoot as any as {adoptedStyleSheets: any}).adoptedStyleSheets = [this.styleSheet];
+        if (this._stylesService.supportsAdoptingStyleSheets) {
+            if (this._stylesService.hasGlobalStyles) {
+                (this._renderRoot as any as {adoptedStyleSheets: any}).adoptedStyleSheets = [
+                    this._stylesService.globalStyleSheet,
+                    this._stylesService.convertToStyleSheet((this.constructor as typeof Controller).__styles)
+                ];
+            } else {
+                (this._renderRoot as any as {adoptedStyleSheets: any}).adoptedStyleSheets = [
+                    this._stylesService.convertToStyleSheet((this.constructor as typeof Controller).__styles)
+                ];
+            }
         } else {
             this._needsSytleInsertion = true;
-        }
-    }
-
-    private get styleSheet(): CSSStyleSheet|null {
-        if ((this.constructor as typeof Controller)._supportsAdoptingStyleSheets) {
-            const styleSheet = new CSSStyleSheet();
-            (styleSheet as any).replaceSync((this.constructor as typeof Controller).__styles);
-            return styleSheet;
-        } else {
-            return null;
         }
     }
 

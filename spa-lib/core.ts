@@ -1,7 +1,11 @@
 import {AppConfig, Service} from './interfaces';
 import {Router} from './router/router';
+import {StylesService} from './styles-service';
 
 export function runApp(config: AppConfig) {
+    const stylesService: StylesService = (StylesService as any as Service).getInstance();
+    stylesService.globalStyles = config.globalStyles;
+
     if (config.enableRouting === undefined || config.enableRouting) {
         const router: Router = (Router as any as Service).getInstance();
 
