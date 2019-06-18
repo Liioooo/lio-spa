@@ -1,5 +1,5 @@
-import {Controller} from "../controller";
-import {OutputEmitter} from "../output-emitter";
+import {Controller} from '../controller';
+import {OutputEmitter} from '../output-emitter';
 
 export function Output() {
     return function (target: Controller, propertyName: string) {
@@ -19,5 +19,5 @@ export function Output() {
                this[propertyName] = userDefinedValue;
            }
         });
-    }
+    };
 }

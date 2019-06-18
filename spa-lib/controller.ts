@@ -1,4 +1,7 @@
-import {render, TemplateResult} from "lit-html";
+import {render, TemplateResult} from 'lit-html';
+import {OnChanges} from './lifecycle/on-changes';
+import {OnDestroy} from './lifecycle/on-destroy';
+import {OnInit} from './lifecycle/on-init';
 
 export abstract class Controller extends HTMLElement {
 
@@ -22,25 +25,25 @@ export abstract class Controller extends HTMLElement {
     private attributeChangedCallback(name: string, oldValue: unknown, newValue: unknown) {
         this[name] = newValue;
         if (this.constructor.prototype.hasOwnProperty('onChanges')) {
-            this['onChanges'](name, oldValue, newValue);
+            (this as any as OnChanges).onChanges(name, oldValue, newValue);
         }
         this.updateOwnDOM();
     }
 
     private disconnectedCallback() {
         if (this.constructor.prototype.hasOwnProperty('onDestroy')) {
-            this['onDestroy']();
+            (this as any as OnDestroy).onDestroy();
         }
     }
 
     private initialize() {
-        (this as any as {_renderRoot: ShadowRoot})._renderRoot = this.attachShadow({mode: "open"});
-        if((this.constructor as typeof Controller).__isApplicationRoot) {
+        (this as any as {_renderRoot: ShadowRoot})._renderRoot = this.attachShadow({mode: 'open'});
+        if ((this.constructor as typeof Controller).__isApplicationRoot) {
             this.setAttribute('applictation_root_comp', '');
         }
         this.updateOwnDOM();
         if (this.constructor.prototype.hasOwnProperty('onInit')) {
-            this['onInit']();
+            (this as any as OnInit).onInit();
         }
     }
 
@@ -59,16 +62,16 @@ export abstract class Controller extends HTMLElement {
 
     public updateChildrenDOM() {
         this.updateOwnDOM();
-        (this.constructor as typeof Controller).__allCustomElements.forEach(element => {
+        (this.constructor as typeof Controller).__allCustomElements.forEach((element) => {
            const domEntries = this._renderRoot.querySelectorAll(element);
            domEntries.forEach((entry: Controller) => {
                entry.updateChildrenDOM();
-           })
+           });
         });
     }
 
     private insertCss(css: string) {
-        let styles = document.createElement('style');
+        const styles = document.createElement('style');
         styles.setAttribute('type', 'text/css');
         styles.appendChild(document.createTextNode(css));
         this._renderRoot.appendChild(styles);

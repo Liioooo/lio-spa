@@ -3,8 +3,8 @@ export function InjectService(service: any) {
 
         Object.defineProperty(target, propertyName, {
             get: () => {
-                return service['getInstance']()
+                return service['getInstance']();
             }
         });
-    }
+    };
 }

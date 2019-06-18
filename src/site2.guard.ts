@@ -1,6 +1,6 @@
-import {CanActivate, CanActivateResult} from "../spa-lib/interfaces";
+import {CanActivate, CanActivateResult} from '../spa-lib/interfaces';
 
-export class Site2Guard implements CanActivate{
+export class Site2Guard implements CanActivate {
 
     canActivate(): CanActivateResult {
         return {

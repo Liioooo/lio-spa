@@ -1,6 +1,6 @@
-import {Controller} from "./controller";
+import {Controller} from './controller';
 
-export class OutputEmitter<T = any> {
+export class OutputEmitter<T = unknown> {
 
     private __hostElement: Controller;
     private __eventName: string;

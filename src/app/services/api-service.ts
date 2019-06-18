@@ -1,4 +1,4 @@
-import {Service} from "../../../spa-lib/decorators/service-decorator";
+import {Service} from '../../../spa-lib/decorators/service-decorator';
 
 @Service()
 export class ApiService {

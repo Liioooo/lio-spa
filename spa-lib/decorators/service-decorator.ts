@@ -1,4 +1,4 @@
-export function Service(){
+export function Service() {
     return function (target: Function) {
 
         const original = target;
@@ -9,8 +9,7 @@ export function Service(){
             return new constructor(arg);
         }
 
-        const modConstructor: any = function (arg: any)
-        {
+        const modConstructor: any = function (arg: any) {
             if (arg !== instanciatedWithGetInstanceId) {
                 throw Error('Services are not allowed to be instanciated!');
             }
@@ -22,14 +21,14 @@ export function Service(){
 
         Object.defineProperty(modConstructor, 'getInstance', {
             value: () => {
-                if(!modConstructor.instance) {
+                if (!modConstructor.instance) {
                     modConstructor.instance = instanciate(modConstructor, instanciatedWithGetInstanceId);
                 }
                 return modConstructor.instance;
             }
         });
 
-        return modConstructor as any;
-    }
+        return modConstructor;
+    };
 
 }

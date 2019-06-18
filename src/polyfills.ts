@@ -18,6 +18,6 @@
 
 /** Needed in every Browser when compiling to ES5
  */
-import '@webcomponents/custom-elements/src/native-shim'
+import '@webcomponents/custom-elements/src/native-shim';
 
 // import '@webcomponents/webcomponentsjs';

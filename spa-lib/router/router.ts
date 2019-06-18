@@ -1,21 +1,21 @@
-import {Service} from "../decorators/service-decorator";
-import {CanActivateResult, Route} from "../interfaces";
-import {InjectService} from "../decorators/inject-service-decorator";
-import {ApplicationService} from "../application-service";
+import {Service} from '../decorators/service-decorator';
+import {CanActivateResult, Route} from '../interfaces';
+import {InjectService} from '../decorators/inject-service-decorator';
+import {ApplicationService} from '../application-service';
 
 @Service()
 export class Router {
 
     private _routerOutlet: Element;
     private _routes: Route[];
-    private _activeRouteElementSelector: string;
-    private _currentRouteParam: any;
+    private _currentRouteElementSelector: string;
+    private _currentRouteParam: unknown;
     private _currentUrl: string;
 
     @InjectService(ApplicationService)
     private appService: ApplicationService;
 
-    get currentRouteParam(): any {
+    get currentRouteParam(): unknown {
         return this._currentRouteParam;
     }
 
@@ -33,12 +33,12 @@ export class Router {
         });
     }
 
-    private matchRoute(path: string, routeParams: any): Route {
-        const found = this._routes.find(route => route.path === path);
+    private matchRoute(path: string, routeParams: unknown): Route {
+        const found = this._routes.find((route) => route.path === path);
         if (!found) {
             throw Error(`Route with path: ${path} couldn't be matched`);
         }
-        if(found.redirectTo) {
+        if (found.redirectTo) {
             return this.matchRoute(found.redirectTo, routeParams);
         }
         return found;
@@ -57,25 +57,25 @@ export class Router {
 
     private async getSelector(route: Route): Promise<string> {
         if (route.component) {
-            return (route.component as any as {__selector: string}).__selector;
+            return (route.component as unknown as {__selector: string}).__selector;
         } else if (route.lazyLoadRoute) {
             const lazyComponent = await route.lazyLoadRoute();
-            return (lazyComponent as any as {__selector: string}).__selector;
+            return (lazyComponent as unknown as {__selector: string}).__selector;
         } else {
             throw Error(`Route with path: ${route.path} couldn't be matched`);
         }
     }
 
-    public async navigate(path: string, param?: any) {
+    public async navigate(path: string, param?: unknown) {
         const foundRoute = this.matchRoute(path, param);
         const guardResult = this.checkGuard(foundRoute);
-        if(guardResult === true) {
-            this._activeRouteElementSelector = await this.getSelector(foundRoute);
+        if (guardResult === true) {
+            this._currentRouteElementSelector = await this.getSelector(foundRoute);
             this._currentRouteParam = param;
             this._currentUrl = path + (param ? '/' + param : '');
             let newHash = '#/';
             if (path !== '/') {
-                newHash += path.substring(1)
+                newHash += path.substring(1);
             }
             if (param) {
                 newHash += '/' + param;
@@ -83,12 +83,12 @@ export class Router {
             location.hash = newHash;
             this.renderRoute();
         } else {
-            this.navigate((guardResult as CanActivateResult).redirectToPath, (guardResult as CanActivateResult).redirectToParam)
+            this.navigate((guardResult as CanActivateResult).redirectToPath, (guardResult as CanActivateResult).redirectToParam);
         }
     }
 
     public navigateByUrl(url: string) {
-        if(url === this._currentUrl) {
+        if (url === this._currentUrl) {
             return;
         }
         const urlParts = url.split('/');
@@ -99,7 +99,7 @@ export class Router {
         if (this._routerOutlet.children.length > 0) {
             this._routerOutlet.removeChild(this._routerOutlet.children[0]);
         }
-        const component = document.createElement(this._activeRouteElementSelector);
+        const component = document.createElement(this._currentRouteElementSelector);
         this._routerOutlet.appendChild(component);
     }
 

@@ -1,10 +1,10 @@
-import {Component} from "../../spa-lib/decorators/component-decorator";
-import {Controller} from "../../spa-lib/controller";
-import {html, TemplateResult} from "lit-html";
-import {Input} from "../../spa-lib/decorators/input-decorator";
-import {InjectService} from "../../spa-lib/decorators/inject-service-decorator";
-import {ApplicationService} from "../../spa-lib/application-service";
-import {ApiService} from "./services/api-service";
+import {Component} from '../../spa-lib/decorators/component-decorator';
+import {Controller} from '../../spa-lib/controller';
+import {html, TemplateResult} from 'lit-html';
+import {Input} from '../../spa-lib/decorators/input-decorator';
+import {InjectService} from '../../spa-lib/decorators/inject-service-decorator';
+import {ApplicationService} from '../../spa-lib/application-service';
+import {ApiService} from './services/api-service';
 
 @Component({
     selector: 'app-root',

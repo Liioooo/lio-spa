@@ -1,3 +1,3 @@
 export interface OnChanges {
-    onChanges(property: string, oldValue: string, newValue: string): void
+    onChanges(property: string, oldValue: unknown, newValue: unknown): void;
 }

@@ -1,5 +1,5 @@
-import {Service} from "./decorators/service-decorator";
-import {Controller} from "./controller";
+import {Service} from './decorators/service-decorator';
+import {Controller} from './controller';
 
 @Service()
 export class ApplicationService {
@@ -12,7 +12,7 @@ export class ApplicationService {
 
     public get _appRoot(): Controller {
         if (!this.__appRoot) {
-            this.__appRoot = document.querySelector('[applictation_root_comp]') as Controller;
+            this.__appRoot = document.querySelector('[applictation_root_comp]');
         }
         return this.__appRoot;
     }

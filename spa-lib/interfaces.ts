@@ -1,9 +1,10 @@
-import {Controller} from "./controller";
+import {Controller} from './controller';
 
 export interface AppConfig {
     components: typeof Controller[];
     services: any[];
-    routes: Route[];
+    routes?: Route[];
+    enableRouting?: boolean;
 }
 
 export interface Route {
@@ -11,11 +12,11 @@ export interface Route {
     component?: typeof Controller;
     redirectTo?: string;
     lazyLoadRoute?: () => Promise<typeof Controller>;
-    canActivate?: any
+    canActivate?: any;
 }
 
 export interface CanActivate {
-    canActivate(path: string, routeParams: any): CanActivateResult;
+    canActivate(path: string, routeParams: unknown): CanActivateResult;
 }
 
 export interface CanActivateResult {
@@ -23,3 +24,5 @@ export interface CanActivateResult {
     redirectToPath: string;
     redirectToParam?: string;
 }
+
+export type Service = {getInstance: () => any};

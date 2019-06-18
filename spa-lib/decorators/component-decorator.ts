@@ -22,10 +22,10 @@ export function Component(config: {
             }
         });
 
-        if(!(Object.getPrototypeOf(original) as any).__allCustomElements) {
-            (Object.getPrototypeOf(original) as any).__allCustomElements = [];
+        if (!Object.getPrototypeOf(original).__allCustomElements) {
+            Object.getPrototypeOf(original).__allCustomElements = [];
         }
-        (Object.getPrototypeOf(original) as any as {__allCustomElements: string[]}).__allCustomElements.push(config.selector);
+        (Object.getPrototypeOf(original) as {__allCustomElements: string[]}).__allCustomElements.push(config.selector);
 
         window.customElements.define(config.selector, original);
 
