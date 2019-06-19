@@ -14,6 +14,10 @@
     "build": "tsc -p tsconfig.json",
     "lint": "tslint --project ./"
   },
+  "keywords": [
+    "spa",
+    "webcomponents"
+  ],
   "dependencies": {
     "tslib": "^1.10.0"
   },

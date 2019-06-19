@@ -53,9 +53,9 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/packages/cli",
   "keywords": [
-    "spa"
+    "spa",
+    "webcomponents"
   ],
   "main": "lib/index.js",
   "oclif": {
