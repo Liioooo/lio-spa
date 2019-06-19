@@ -1,8 +1,8 @@
-import {Service} from '../decorators/service-decorator';
-import {CanActivateResult, Route} from '../interfaces';
-import {InjectService} from '../decorators/inject-service-decorator';
-import {ApplicationService} from '../application-service';
-import {ControllerConstructorIntern} from '../controller-constructor-intern';
+import {Service} from './decorators/service-decorator';
+import {CanActivateResult, Route} from './interfaces';
+import {InjectService} from './decorators/inject-service-decorator';
+import {ApplicationService} from './application-service';
+import {ControllerConstructorIntern} from './controller-constructor-intern';
 
 @Service()
 export class Router {

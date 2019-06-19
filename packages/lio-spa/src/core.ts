@@ -1,5 +1,5 @@
 import {AppConfig, Service} from './interfaces';
-import {Router} from './router/router';
+import {Router} from './router';
 import {StylesService} from './styles-service';
 
 export function runApp(config: AppConfig) {

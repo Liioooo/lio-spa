@@ -1,18 +1,29 @@
 {
   "name": "@lio-spa/core",
+  "version": "0.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Liiioooo/lio-spa.git"
   },
   "bugs": "https://github.com/Liiioooo/lio-spa/issues",
   "author": "Liiioooo",
-  "version": "1.0.0",
+  "license": "MIT",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
+    "build": "tsc -p tsconfig.json",
     "lint": "tslint --project ./"
   },
   "dependencies": {
-
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.8",
+    "typescript": "^3.5.2",
+    "tslint": "^5.17.0",
+    "lit-html": "^1.1.0"
+  },
+  "peerDependencies": {
+    "lit-html": "^1.1.0"
   }
 }

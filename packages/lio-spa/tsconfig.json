@@ -2,8 +2,9 @@
   "compilerOptions": {
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es2015",
     "sourceMap": true,
+    "declaration": true,
     "experimentalDecorators": true,
     "lib": ["esnext", "dom"],
     "outDir": "lib"

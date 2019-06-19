@@ -8,6 +8,7 @@
   },
   "bugs": "https://github.com/Liiioooo/lio-spa/issues",
   "author": "Liiioooo",
+  "license": "MIT",
   "scripts": {},
   "devDependencies": {
     "tslint": "^5.17.0",

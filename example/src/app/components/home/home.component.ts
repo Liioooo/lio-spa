@@ -4,7 +4,7 @@ import {html, TemplateResult} from 'lit-html';
 import {InjectService} from '../../../../../packages/lio-spa/src/decorators/inject-service-decorator';
 import {ApiService} from '../../services/api-service';
 import {OnInit} from '../../../../../packages/lio-spa/src/lifecycle/on-init';
-import {Router} from '../../../../../packages/lio-spa/src/router/router';
+import {Router} from '../../../../../packages/lio-spa/src/router';
 
 @Component({
     selector: 'app-home',

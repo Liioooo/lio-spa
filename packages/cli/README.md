@@ -15,11 +15,11 @@ cli
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g cli
+$ npm install -g @lio-spa/cli
 $ lio-spa COMMAND
 running command...
 $ lio-spa (-v|--version|version)
-cli/0.0.0 win32-x64 node-v10.13.0
+@lio-spa/cli/0.0.0 win32-x64 node-v10.13.0
 $ lio-spa --help [COMMAND]
 USAGE
   $ lio-spa COMMAND
@@ -28,28 +28,28 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`lio-spa hello [FILE]`](#lio-spa-hello-file)
+* [`lio-spa build`](#lio-spa-build)
 * [`lio-spa help [COMMAND]`](#lio-spa-help-command)
+* [`lio-spa new PROJECTNAME`](#lio-spa-new-projectname)
+* [`lio-spa serve`](#lio-spa-serve)
 
-## `lio-spa hello [FILE]`
+## `lio-spa build`
 
-describe the command here
+Builds the application.
 
 ```
 USAGE
-  $ lio-spa hello [FILE]
+  $ lio-spa build
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help  show CLI help
 
 EXAMPLE
-  $ lio-spa hello
-  hello world from ./src/hello.ts!
+  $ lio-spa build
+  Builds the application
 ```
 
-_See code: [src\commands\hello.ts](https://github.com/packages/cli/blob/v0.0.0/src\commands\hello.ts)_
+_See code: [src\commands\build.ts](https://github.com/Liiioooo/lio-spa/blob/v0.0.0/src\commands\build.ts)_
 
 ## `lio-spa help [COMMAND]`
 
@@ -67,4 +67,42 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.0/src\commands\help.ts)_
+
+## `lio-spa new PROJECTNAME`
+
+Creates a new workspace and an initial Lio-SPA app.
+
+```
+USAGE
+  $ lio-spa new PROJECTNAME
+
+OPTIONS
+  -h, --help   show CLI help
+  --noInitGit
+
+EXAMPLE
+  $ lio-spa new myNewApp
+  Creates a new workspace and an initial Lio-SPA app in ./myNewApp.
+```
+
+_See code: [src\commands\new.ts](https://github.com/Liiioooo/lio-spa/blob/v0.0.0/src\commands\new.ts)_
+
+## `lio-spa serve`
+
+Serves the application in the working directory.
+
+```
+USAGE
+  $ lio-spa serve
+
+OPTIONS
+  -h, --help   show CLI help
+  --port=port  [default: 8200]
+
+EXAMPLE
+  $ lio-spa serve
+  Serves the application in the working directory
+```
+
+_See code: [src\commands\serve.ts](https://github.com/Liiioooo/lio-spa/blob/v0.0.0/src\commands\serve.ts)_
 <!-- commandsstop -->
