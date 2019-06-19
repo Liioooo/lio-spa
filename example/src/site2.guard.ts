@@ -1,4 +1,4 @@
-import {CanActivate, CanActivateResult} from '../spa-lib/interfaces';
+import {CanActivate, CanActivateResult} from '../../packages/lio-spa/src/interfaces';
 
 export class Site2Guard implements CanActivate {
 

@@ -1,0 +1,19 @@
+{
+  "name": "lio-spa-example-app",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "tslint --project ./"
+  },
+  "dependencies": {
+    "@lio-spa/core": "*",
+    "tslib": "^1.10.0",
+    "core-js": "^3.1.4"
+  },
+  "devDependencies": {
+    "@lio-spa/cli": "*",
+    "@types/node": "^12.0.8",
+    "lit-html": "^1.1.0",
+    "typescript": "^3.5.2",
+    "tslint": "^5.17.0"
+  }
+}

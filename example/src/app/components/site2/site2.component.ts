@@ -1,10 +1,10 @@
-import {Component} from '../../../../spa-lib/decorators/component-decorator';
-import {Controller} from '../../../../spa-lib/controller';
+import {Component} from '../../../../../packages/lio-spa/src/decorators/component-decorator';
+import {Controller} from '../../../../../packages/lio-spa/src/controller';
 import {html, TemplateResult} from 'lit-html';
-import {InjectService} from '../../../../spa-lib/decorators/inject-service-decorator';
+import {InjectService} from '../../../../../packages/lio-spa/src/decorators/inject-service-decorator';
 import {ApiService} from '../../services/api-service';
-import {Router} from '../../../../spa-lib/router/router';
-import {OnInit} from '../../../../spa-lib/lifecycle/on-init';
+import {Router} from '../../../../../packages/lio-spa/src/router/router';
+import {OnInit} from '../../../../../packages/lio-spa/src/lifecycle/on-init';
 
 @Component({
     selector: 'app-site2',

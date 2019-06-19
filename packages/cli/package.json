@@ -1,0 +1,80 @@
+{
+  "name": "@lio-spa/cli",
+  "version": "0.0.0",
+  "author": "Liiioooo",
+  "bin": {
+    "lio-spa": "./bin/run"
+  },
+  "bugs": "https://github.com/packages/cli/issues",
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@oclif/command": "^1.5.14",
+    "@oclif/config": "^1.13.0",
+    "@oclif/plugin-help": "^2.2.0",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^5.0.3",
+    "css-loader": "^2.1.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.6.0",
+    "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "progress-bar-webpack-plugin": "^1.12.1",
+    "sass-loader": "^7.1.0",
+    "terser-webpack-plugin": "^1.2.3",
+    "to-string-loader": "^1.1.5",
+    "ts-loader": "^5.3.3",
+    "tslib": "^1.10.0",
+    "tslint": "^5.17.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-merge": "^4.2.1"
+  },
+  "peerDependencies": {
+    "lit-html": "^1.1.0",
+    "typescript": "^3.5.2"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.22.0",
+    "@oclif/tslint": "^3.1.1",
+    "@types/node": "^10.14.9",
+    "globby": "^8.0.2",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.2.0",
+    "tslint": "^5.17.0",
+    "typescript": "^3.5.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/packages/cli",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "lio-spa",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "packages/cli",
+  "scripts": {
+    "postpack": "rimraf oclif.manifest.json",
+    "prepack": "rimraf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "version": "oclif-dev readme && git add README.md",
+    "lint": "tslint --project ./"
+  },
+  "types": "lib/index.d.ts"
+}
