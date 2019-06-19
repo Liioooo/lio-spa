@@ -12,12 +12,9 @@
     "lio-spa": "./bin/run"
   },
   "dependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
     "@oclif/command": "^1.5.14",
     "@oclif/config": "^1.13.0",
     "@oclif/plugin-help": "^2.2.0",
-    "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^2.1.1",
