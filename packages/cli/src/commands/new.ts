@@ -15,22 +15,20 @@ Creates a new workspace and an initial Lio-SPA app in ./myNewApp.
 
   static flags = {
     help: flags.help({char: 'h'}),
+    noInitGit: flags.boolean({
+        default: false
+    })
   };
 
   static args: Parser.args.IArg[] = [
       {
         name: 'projectName',
         required: true,
-      },
-      {
-        name: 'initGit',
-        default: 'true',
-        options: ['true', 'false']
       }
   ];
 
   async run() {
-    const {args} = this.parse(New);
+    const {args, flags} = this.parse(New);
 
     const workingDir = path.join(process.cwd(), args.projectName);
 
@@ -47,7 +45,7 @@ Creates a new workspace and an initial Lio-SPA app in ./myNewApp.
       this.log(stdout);
       this.log(stderr);
 
-        if (args.initGit === 'true') {
+        if (!flags.noInitGit) {
             this.log('Initializing git-repository...');
             child_process.exec(`cd ${workingDir} && git init && git add . && git commit -m "initial commit"`, (errorGit, stdoutGit, stderrGit) => {
                 this.log(stdoutGit);
