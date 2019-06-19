@@ -47,7 +47,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: [path.join(__dirname , '..', 'node_modules', '@babel/preset-env')]
                     }
                 }
             }
