@@ -38,6 +38,18 @@ module.exports = {
                     'ts-loader'
                 ],
                 exclude: /node_modules/
+            },
+            {
+                test: /\.js$/,
+                include: [
+                    path.join(process.cwd(), 'node_modules/lit-html'),
+                ],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [path.join(__dirname , '..', 'node_modules', '@babel/preset-env')]
+                    }
+                }
             }
         ]
     },
