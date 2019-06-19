@@ -1,13 +1,17 @@
 {
   "name": "@lio-spa/core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Liiioooo/lio-spa.git"
+  },
+  "bugs": "https://github.com/Liiioooo/lio-spa/issues",
+  "author": "Liiioooo",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "lint": "tslint --project ./"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
 
   }

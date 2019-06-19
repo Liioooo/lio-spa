@@ -1,11 +1,15 @@
 {
   "name": "@lio-spa/cli",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Liiioooo/lio-spa.git"
+  },
+  "bugs": "https://github.com/Liiioooo/lio-spa/issues",
   "author": "Liiioooo",
   "bin": {
     "lio-spa": "./bin/run"
   },
-  "bugs": "https://github.com/packages/cli/issues",
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
