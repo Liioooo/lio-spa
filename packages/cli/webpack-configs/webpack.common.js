@@ -6,9 +6,8 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     entry: [
-        './src/styles.scss',
-        './src/polyfills.ts',
-        './src/main.ts'
+        path.join(process.cwd(), 'src/polyfills.ts'),
+        path.join(process.cwd(), 'src/main.ts'),
     ],
     module: {
         rules: [
@@ -43,7 +42,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 include: [
-                    path.join(__dirname, '..', 'node_modules/lit-html'),
+                    path.join(process.cwd(), 'node_modules/lit-html'),
                 ],
                 use: {
                     loader: 'babel-loader',
@@ -57,7 +56,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin(
             {
-                template: "src/index.html",
+                template: path.join(process.cwd(), "src/index.html"),
                 filename: "./index.html"
             }
         ),
@@ -65,7 +64,7 @@ module.exports = {
             filename: "styles.[hash].css"
         }),
         new CopyWebpackPlugin([
-            {from:'src/assets',to:'assets'}
+            {from: path.join(process.cwd(), 'src/assets'),to:'assets'}
         ]),
         new ProgressBarPlugin()
     ],
@@ -74,6 +73,11 @@ module.exports = {
     },
     output: {
         filename: 'bundle.[hash].js',
-        path: path.join(__dirname, '..', 'dist')
-    }
+        path: path.join(process.cwd(), 'dist')
+    },
+    resolveLoader: {
+        modules: [
+            path.join(__dirname, '..', 'node_modules')
+        ]
+    },
 };
