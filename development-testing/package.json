@@ -1,0 +1,14 @@
+{
+  "name": "lio-spa-dev-testing",
+  "version": "0.0.0",
+  "scripts": {
+    "lint": "tslint --project ./",
+    "start": "lio-spa serve",
+    "build": "lio-spa build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@lio-spa/cli": "file:../packages/cli",
+    "@lio-spa/core": "file:../packages/lio-spa"
+  }
+}
