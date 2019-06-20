@@ -43,6 +43,7 @@ module.exports = {
                 test: /\.js$/,
                 include: [
                     path.join(process.cwd(), 'node_modules/lit-html'),
+                    path.join(process.cwd(), '..', 'node_modules/lit-html'),
                 ],
                 use: {
                     loader: 'babel-loader',

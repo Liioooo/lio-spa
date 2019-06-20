@@ -17,6 +17,10 @@ export class StylesService {
         this._globalStyles = cssText;
     }
 
+    public get globalStyles(): string {
+        return this._globalStyles;
+    }
+
     public get globalStyleSheet(): CSSStyleSheet {
         if (this._globalStyleSheet === undefined) {
             this._globalStyleSheet = this.convertToStyleSheet(this._globalStyles);

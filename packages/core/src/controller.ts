@@ -98,6 +98,9 @@ export abstract class Controller extends HTMLElement {
         // ensure adoptedStyles have highest priority.
         const stylesText = (this.constructor as typeof Controller).__styles;
         if (stylesText && this._needsSytleInsertion) {
+            if (this._stylesService.hasGlobalStyles) {
+                this.insertCss(this._stylesService.globalStyles);
+            }
             this.insertCss(stylesText);
         }
         this._needsSytleInsertion = false;
