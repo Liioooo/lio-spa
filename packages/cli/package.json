@@ -1,6 +1,6 @@
 {
   "name": "@lio-spa/cli",
-  "version": "0.0.0",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Liiioooo/lio-spa.git"
@@ -38,10 +38,12 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.0",
+    "@types/node": "^10.14.9",
+    "@types/webpack": "^4.4.33",
+    "@types/webpack-dev-server": "^3.1.6",
     "rimraf": "^2.6.3",
     "ts-node": "^8.2.0",
-    "typescript": "^3.5.2",
-    "@types/node": "^10.14.9"
+    "typescript": "^3.5.2"
   },
   "engines": {
     "node": ">=8.0.0"

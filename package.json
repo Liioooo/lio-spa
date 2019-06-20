@@ -9,7 +9,10 @@
   "bugs": "https://github.com/Liiioooo/lio-spa/issues",
   "author": "Liiioooo",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "bump-versions": "cross-var node scripts/bump-versions $npm_package_version",
+    "publish-all": "node scripts/publish-all"
+  },
   "devDependencies": {
     "typescript": "^3.5.2",
     "tslint": "^5.17.0",

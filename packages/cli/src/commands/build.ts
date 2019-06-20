@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command';
 import * as path from 'path';
 import * as fs from 'fs';
-const webpack = require('webpack');
+import * as webpack from 'webpack';
 
 export default class Build extends Command {
     static description = 'Builds the application.';
