@@ -1,4 +1,4 @@
-import {Service} from '../../../../packages/lio-spa/src/decorators/service-decorator';
+import {Service} from '../../../../packages/core/src/decorators/service-decorator';
 
 @Service()
 export class ApiService {

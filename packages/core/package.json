@@ -12,8 +12,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "publish": "npm run build && npm publish",
-    "lint": "tslint --project ./"
+    "publish": "npm run build && npm publish"
   },
   "keywords": [
     "spa",
@@ -23,6 +22,7 @@
     "tslib": "^1.10.0"
   },
   "devDependencies": {
+    "typescript": "^3.5.2"
   },
   "peerDependencies": {
     "lit-html": "^1.1.0"

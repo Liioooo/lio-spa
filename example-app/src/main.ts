@@ -1,6 +1,6 @@
 import {HomeComponent} from './app/components/home/home.component';
 import {AppComponent} from './app/app.component';
-import {runApp} from '../../packages/lio-spa/src/core';
+import {runApp} from '../../packages/core/src/core';
 import {ApiService} from './app/services/api-service';
 import {Site2Guard} from './site2.guard';
 

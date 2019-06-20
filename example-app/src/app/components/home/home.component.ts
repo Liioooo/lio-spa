@@ -1,10 +1,10 @@
-import {Component} from '../../../../../packages/lio-spa/src/decorators/component-decorator';
-import {Controller} from '../../../../../packages/lio-spa/src/controller';
+import {Component} from '../../../../../packages/core/src/decorators/component-decorator';
+import {Controller} from '../../../../../packages/core/src/controller';
 import {html, TemplateResult} from 'lit-html';
-import {InjectService} from '../../../../../packages/lio-spa/src/decorators/inject-service-decorator';
+import {InjectService} from '../../../../../packages/core/src/decorators/inject-service-decorator';
 import {ApiService} from '../../services/api-service';
-import {OnInit} from '../../../../../packages/lio-spa/src/lifecycle/on-init';
-import {Router} from '../../../../../packages/lio-spa/src/router';
+import {OnInit} from '../../../../../packages/core/src/lifecycle/on-init';
+import {Router} from '../../../../../packages/core/src/router';
 
 @Component({
     selector: 'app-home',

@@ -1,9 +1,9 @@
-import {Component} from '../../../packages/lio-spa/src/decorators/component-decorator';
-import {Controller} from '../../../packages/lio-spa/src/controller';
+import {Component} from '../../../packages/core/src/decorators/component-decorator';
+import {Controller} from '../../../packages/core/src/controller';
 import {html, TemplateResult} from 'lit-html';
-import {Input} from '../../../packages/lio-spa/src/decorators/input-decorator';
-import {InjectService} from '../../../packages/lio-spa/src/decorators/inject-service-decorator';
-import {ApplicationService} from '../../../packages/lio-spa/src/application-service';
+import {Input} from '../../../packages/core/src/decorators/input-decorator';
+import {InjectService} from '../../../packages/core/src/decorators/inject-service-decorator';
+import {ApplicationService} from '../../../packages/core/src/application-service';
 import {ApiService} from './services/api-service';
 
 @Component({
