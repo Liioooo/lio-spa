@@ -1,8 +1,7 @@
 import {Command, flags} from '@oclif/command';
 import * as path from 'path';
 import * as fs from 'fs';
-import * as webpack from 'webpack';
-import * as WebpackDevServer from 'webpack-dev-server';
+import {serve} from '@lio-spa/build-app/lib';
 
 export default class Serve extends Command {
     static description = 'Serves the application in the working directory.';
@@ -31,15 +30,6 @@ Serves the application in the working directory
         }
 
         this.log('Starting app...');
-
-        const config = require(path.join(__dirname, '..', '..', 'webpack-configs', 'webpack.dev.js'));
-        const server = new WebpackDevServer(webpack(config), {});
-
-        server.listen(flags.port as number, (err: any) => {
-            if (err) {
-                console.log(err);
-            }
-            console.log('WebpackDevServer listening at localhost:', flags.port);
-        });
+        serve(flags.port as number);
     }
 }

@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command';
 import * as path from 'path';
 import * as fs from 'fs';
-import * as webpack from 'webpack';
+import {build} from '@lio-spa/build-app';
 
 export default class Build extends Command {
     static description = 'Builds the application.';
@@ -17,7 +17,6 @@ Builds the application
     };
 
     async run() {
-        const {flags} = this.parse(Build);
 
         const workingDir = process.cwd();
 
@@ -26,16 +25,6 @@ Builds the application
         }
 
         this.log('Building app...');
-
-        const config = require(path.join(__dirname, '..', '..', 'webpack-configs', 'webpack.prod.js'));
-        webpack(config, (err: any, stats: any) => {
-            if (err) {
-                console.log(err);
-            }
-            console.log(stats.toString({
-                chunks: false,
-                colors: true
-            }));
-        });
+        build();
     }
 }

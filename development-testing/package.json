@@ -14,6 +14,7 @@
   "devDependencies": {
     "@lio-spa/cli": "file:../packages/cli",
     "@lio-spa/core": "file:../packages/core",
+    "@lio-spa/build-app": "file:../packages/build-app",
     "@types/node": "^12.0.8"
   },
   "peerDependencies": {
