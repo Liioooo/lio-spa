@@ -1,22 +1,24 @@
-import {HomeComponent} from './app/components/home/home.component';
+import {runApp} from '@lio-spa/core';
 import {AppComponent} from './app/app.component';
-import {runApp} from '../../packages/core/src/core';
-import {ApiService} from './app/services/api-service';
-import {Site2Guard} from './site2.guard';
+import {ToDoListComponent} from './app/components/to-do-list/to-do-list.component';
+import {TodoService} from './app/services/todo-service';
+import {ToDoListItemComponent} from './app/components/to-do-list-item/to-do-list-item.component';
+import {EditTodoComponent} from './app/components/edit-todo/edit-todo.component';
 
 runApp({
     components: [
         AppComponent,
-        HomeComponent
+        ToDoListComponent,
+        ToDoListItemComponent
     ],
     services: [
-        ApiService,
+        TodoService
     ],
     routes: [
-        {path: '/', redirectTo: '/home'},
-        {path: '/home', component: HomeComponent},
-        {path: '/site2', lazyLoadRoute: () => import('./site2.page').then((page) => page.routeRootComp), canActivate: Site2Guard}
+        {path: '/', redirectTo: '/todo-list'},
+        {path: '/todo-list', component: ToDoListComponent},
+        {path: '/edit-todo', component: EditTodoComponent},
     ],
     enableRouting: true,
-    globalStyles: require('./styles.scss')
+    globalStyles: require('./global-styles.scss')
 });

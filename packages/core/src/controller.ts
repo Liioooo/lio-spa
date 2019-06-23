@@ -88,11 +88,12 @@ export abstract class Controller extends HTMLElement {
         if ((this.constructor as typeof Controller).__isApplicationRoot) {
             this.setAttribute('applictation_root_comp', '');
         }
-        this.updateOwnDOM();
 
         if (this.constructor.prototype.hasOwnProperty('onInit')) {
             (this as any as OnInit).onInit();
         }
+
+        this.updateOwnDOM();
 
         // When adoptedStyles are not supported, insert styling after rendering to
         // ensure adoptedStyles have highest priority.

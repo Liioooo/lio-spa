@@ -15,9 +15,8 @@
 // import 'core-js/es/map';
 // import 'core-js/es/weak-map';
 // import 'core-js/es/set';
+// import '@webcomponents/webcomponentsjs';
 
 /** Needed in every Browser when compiling to ES5
  */
 import '@webcomponents/custom-elements/src/native-shim';
-
-// import '@webcomponents/webcomponentsjs';

@@ -1,18 +1,23 @@
 {
-  "name": "lio-spa-example-app",
-  "version": "1.0.0",
+  "name": "example-app",
+  "version": "0.0.0",
   "scripts": {
-    "lint": "tslint --project ./"
+    "lint": "tslint --project ./",
+    "start": "lio-spa serve",
+    "build": "lio-spa build"
   },
   "dependencies": {
-    "@lio-spa/core": "*",
-    "tslib": "^1.10.0",
-    "core-js": "^3.1.4"
+    "@lio-spa/core": "^1.2.1",
+    "@lio-spa/cli": "^1.2.1",
+    "@lio-spa/build-app": "^1.2.1",
+    "@webcomponents/custom-elements": "^1.2.4",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "core-js": "^3.1.4",
+    "lit-html": "^1.1.0",
+    "tslib": "^1.10.0"
   },
   "devDependencies": {
-    "@lio-spa/cli": "*",
     "@types/node": "^12.0.8",
-    "lit-html": "^1.1.0",
     "typescript": "^3.5.2",
     "tslint": "^5.17.0"
   }
