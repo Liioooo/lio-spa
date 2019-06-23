@@ -70,9 +70,12 @@ Creates a new workspace and an initial Lio-SPA app in ./myNewApp.
 
   copyFile(src: string, dest: string, projectName: string) {
     if (src.endsWith('package.json') || src.endsWith('index.html')) {
-      let file = fs.readFileSync(src, 'utf8');
-      file = file.replace('###template-name###', projectName);
-      fs.writeFileSync(dest, file);
+        let file = fs.readFileSync(src, 'utf8');
+        file = file.replace('###template-name###', projectName);
+        fs.writeFileSync(dest, file);
+    } else if (src.endsWith('.gitignore-template')) {
+      dest = dest.replace('.gitignore-template', '.gitignore');
+      fs.copyFileSync(src, dest);
     } else {
         fs.copyFileSync(src, dest);
     }
