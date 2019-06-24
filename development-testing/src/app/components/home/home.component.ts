@@ -1,5 +1,6 @@
-import {Component, Controller} from '@lio-spa/core';
-import {html, TemplateResult} from 'lit-html';
+import {Component, Controller, lio_html} from '@lio-spa/core';
+import {TemplateResult} from 'lit-html';
+import {bind} from '@lio-spa/core/lib/templating';
 
 @Component({
     selector: 'app-home',
@@ -7,12 +8,34 @@ import {html, TemplateResult} from 'lit-html';
 })
 export class HomeComponent extends Controller {
 
+    public value: string = 'kek';
+
+    private show = true;
+    public pref: any;
+
+    handleClick(e) {
+        //console.log(this.value, 'comp');
+        //console.log(this.pref);
+    }
+
+    random() {
+        this.value = Math.random() + '';
+    }
+
+    toogle() {
+        this.show = !this.show;
+    }
+
     render(): TemplateResult {
-        return html`
+        return lio_html`
             <div>
                 <h1>Lio-SPA Framework</h1>
-                <p>You can find the full source-code and the documentation on</p>
+                <p #ref=${bind(this, 'pref')}>You can find the full source-code and the documentation on</p>
                 <p><a href="https://github.com/Liiioooo/lio-spa">Github</a></p>
+                ${this.show ? lio_html`<input [(lio-model)]=${bind(this, 'value')}>` : ''}
+                <button (click)=${this.handleClick}>test kek</button>
+                <button (click:noChangeDet)=${this.random}>random</button>
+                <button (click)=${this.toogle}>toggle</button>
             </div>
         `;
     }
