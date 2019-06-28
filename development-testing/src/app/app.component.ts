@@ -10,6 +10,9 @@ import {TemplateResult} from 'lit-html';
 export class AppComponent extends Controller {
 
     render(): TemplateResult {
-        return lio_html`<router-outlet></router-outlet>`;
+        return lio_html`
+            <a href="/#/home">Home</a>
+            <a href="/#/second">Second</a>
+            <router-outlet></router-outlet>`;
     }
 }
