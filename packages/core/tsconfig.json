@@ -3,7 +3,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es5",
-    "sourceMap": false,
+    "sourceMap": true,
     "declaration": true,
     "experimentalDecorators": true,
     "lib": ["esnext", "dom"],

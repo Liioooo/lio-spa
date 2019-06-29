@@ -1,6 +1,8 @@
 import {Controller} from '../controller';
-import {ApplicationService, OnDestroy, OnInit} from '..';
 import {Service} from '../interfaces';
+import {OnInit} from '../lifecycle/on-init';
+import {OnDestroy} from '../lifecycle/on-destroy';
+import {ApplicationService} from '../application-service';
 
 export function GlobalListener(eventConfigString: string, runChangeDetection: boolean = true) {
     return function (target: Controller, propertyName: string, descriptor: PropertyDescriptor) {

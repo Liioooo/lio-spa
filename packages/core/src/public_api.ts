@@ -17,4 +17,4 @@ export {Output} from './decorators/output-decorator';
 export {InjectService} from './decorators/inject-service-decorator';
 export {GlobalListener} from './decorators/global-listener';
 
-export {lio_svg, lio_html, lioSpaProcessor, LioSpaProcessor} from './templating/index';
+export {lio_svg, lio_html, bind, lioSpaProcessor, LioSpaProcessor} from './templating/index';

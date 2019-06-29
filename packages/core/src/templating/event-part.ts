@@ -1,5 +1,6 @@
 import {EventPart as LitHtmlEventPart, Part} from 'lit-html';
-import {ApplicationService, InjectService} from '..';
+import {InjectService} from '../decorators/inject-service-decorator';
+import {ApplicationService} from '../application-service';
 
 export class EventPart extends LitHtmlEventPart {
 

@@ -9,7 +9,7 @@
   "author": "Liiioooo",
   "description": "Single Page Framework developed by Liiiooo",
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "publish-package": "npm run build && npm publish --access public"
@@ -29,6 +29,9 @@
   },
   "files": [
     "/src",
-    "/lib"
-  ]
+    "/lib",
+    "index.js",
+    "index.d.ts"
+  ],
+  "typings": "./index.d.ts"
 }

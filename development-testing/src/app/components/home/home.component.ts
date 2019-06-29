@@ -1,7 +1,5 @@
-import {Component, Controller, lio_html} from '@lio-spa/core/lib';
+import {Component, Controller, lio_html, bind, GlobalListener, OnInit} from '@lio-spa/core';
 import {TemplateResult} from 'lit-html';
-import {bind} from '@lio-spa/core/lib/templating';
-import {GlobalListener, OnInit} from '@lio-spa/core/lib';
 
 @Component({
     selector: 'app-home',
