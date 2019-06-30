@@ -1,5 +1,7 @@
 import {PropertyCommitter} from 'lit-html';
 import {isBinding} from './bindings';
+import {InjectService} from '../decorators/inject-service-decorator';
+import {ApplicationService} from '../application-service';
 
 export class TwoWayPropertyCommitter extends PropertyCommitter {
 
@@ -7,11 +9,19 @@ export class TwoWayPropertyCommitter extends PropertyCommitter {
     private readonly _elementAccessor: string;
     private _binding: any = null;
 
-    public constructor(element: Element, property: string, strings: ReadonlyArray<string>) {
+    @InjectService(ApplicationService)
+    applicationService: ApplicationService;
+
+    public constructor(element: Element, property: string, strings: ReadonlyArray<string>, private runChangeDetection: boolean) {
         super(element, property, strings);
 
         this._eventName = 'input';
         this._elementAccessor = 'value';
+
+        if (element instanceof HTMLInputElement && element.type === 'checkbox') {
+            this._eventName = 'change';
+            this._elementAccessor = 'checked';
+        }
     }
 
     commit(): void {
@@ -34,10 +44,16 @@ export class TwoWayPropertyCommitter extends PropertyCommitter {
 
     handleEvent() {
         this._binding!.set((this.element as any)[this._elementAccessor]);
+        if (this.runChangeDetection) {
+            this.applicationService.updateApplicationDOM();
+        }
     }
 
 }
 
-export function createTwoWayPropertyCommitter(element: Element, property: string, strings: ReadonlyArray<string>): PropertyCommitter {
-    return new TwoWayPropertyCommitter(element, property, strings);
+export function createTwoWayPropertyCommitter(element: Element, name: string, strings: ReadonlyArray<string>): PropertyCommitter {
+
+    const bindingConfig = name.split(':');
+    const runCd = !(bindingConfig.length === 2 && bindingConfig[1].startsWith('noChangeDet'));
+    return new TwoWayPropertyCommitter(element, name, strings, runCd);
 }

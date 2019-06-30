@@ -8,7 +8,7 @@ export class LioSpaProcessor implements TemplateProcessor {
 
     handleAttributeExpressions(element: Element, name: string, strings: ReadonlyArray<string>, options: RenderOptions): ReadonlyArray<Part> {
 
-        if (name === '[(lio-model)]') {
+        if (name.startsWith('[(lio-model') && name.endsWith(')]')) {
             return createTwoWayPropertyCommitter(element, name, strings).parts;
         } else if (name ===  '#ref') {
             return [createViewReferencePart(element)];
