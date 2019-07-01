@@ -13,6 +13,26 @@ All the following examples are code snippets from inside the `render()` function
 <img [src]=${this.imageSrc}></img>
 ```
 
+#### Reference to a DOM Element
+
+You can get a reference to a DOM element. Therefore you need a public instance varible in your controller, too wich the reference will be assinged.
+
+Example:
+```html
+<div #ref=${bind(this, 'referencedDiv')}></div>
+```
+
+In this example the varible must be called `referencedDiv`.
+
+#### class Binding
+
+it is possible to add or remove classes based on the value of a variable.
+
+Example:
+```html
+<div [class.some-class]=${this.hasClass}></div>
+```
+
 #### Event Binding
 ```html
 <button (click)=${this.handleClick}>Click Me!</button>
