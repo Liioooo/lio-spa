@@ -10,12 +10,12 @@ All the following examples are code snippets from inside the `render()` function
 
 #### Simple Attribute Binding
 ```html
-<img [src]=${this.imageSrc}></img>
+<img [src]=${this.imageSrc} />
 ```
 
 #### Reference to a DOM Element
 
-You can get a reference to a DOM element. Therefore you need a public instance varible in your controller, too wich the reference will be assinged.
+You can get a reference to a DOM element. Therefore you need a public instance variable in your controller, too which the reference will be assigned.
 
 Example:
 ```html
@@ -37,7 +37,7 @@ Example:
 ```html
 <button (click)=${this.handleClick}>Click Me!</button>
 ```
-`handleClick` should be a function implemented in the Controller-Class.
+`handleClick` must be a function implemented in the Controller-Class.
 
 When the event is fired, change-detection for the entire application is run, in order to reflect varibale changes in the DOM.
 If you want to prevent this, you can do it by adding 'noChangeDet' to the event:
@@ -56,8 +56,8 @@ The value of the text-field will automatically be updated, when `value` changes 
 
 It is also possible to disable atomatic change-detection for two-way bindings. Instead of `[(lio-model)]` just use `[(lio-model:noChangeDet)]`
 
-You can read more about templating on the [lit-html docs](https://lit-html.polymer-project.org/guide/template-reference).
-
 The teplating-engine of lio-spa is a slightly modified version of lit-html. Only the binding syntax was changed, all other things described on the lit-html docs can be used in lio-spa.
+
+You can read more about templating on the [lit-html docs](https://lit-html.polymer-project.org/guide/template-reference).
 
 ### [Next Step: Routing](routing.md)

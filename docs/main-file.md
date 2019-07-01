@@ -3,7 +3,7 @@
 This is the main entry file for your project.
 Here you define all your Components, Services, Routes and Global Styles.
 
-An example `main.ts` file:
+An example `{app_name}/src/main.ts` file:
 
 ```ts
 import {runApp} from '@lio-spa/core';

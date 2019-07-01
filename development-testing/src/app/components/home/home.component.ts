@@ -10,15 +10,15 @@ export class HomeComponent extends Controller {
     public value;
 
     random() {
-        console.log(this.value);
-        //this.value = Math.random().toString();
+        this.value = Math.random().toString();
     }
 
     render(): TemplateResult {
+        console.log('sds');
         return lio_html`
             <div>
                 <h1>Lio-SPA Framework</h1>
-                <input type="color" [(lio-model)]=${bind(this, 'value')}>
+                <input type="text" [(lio-model)]=${bind(this, 'value')}>
                 <input type="text" [(lio-model)]=${bind(this, 'value')}>
                 <p>${this.value}</p>
                 <button (click)=${this.random}>random</button>

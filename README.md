@@ -1,10 +1,11 @@
 # Lio-SPA Framework
-
 A simple and lightweight Framework for creating Single-Page Apps, built on top of [lit-html](https://lit-html.polymer-project.org).
 
-### [Getting Started](docs/main-file.md)
-
+### [Getting Started](docs/getting-started.md)
 There is also an [example-project](example-app).
+
+## Installation
+`npm i @lio-spa/cli -g`
 
 ## Contributing
 Want to contribute? Great!
