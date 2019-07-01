@@ -28,4 +28,4 @@ runApp({
 });
 ```
 
-### [Next Step: How to write Components](componets.md)
+### [Next Step: How to write Components](components.md)
