@@ -64,6 +64,16 @@ Then you can emit values by calling `this.someOutput.emit('value');`
 
 Parent Componets can listen to Outputs just by listenning to the `someOutput` event.
 
+### Global Listeners
+Every component can listen to events on window or document, by using the `@GlobalListener` decorator.
+
+```ts
+@GlobalListner('window:mousemove')
+onMouseMove(e: Mouseevent) {
+  console.log(e);
+}
+```
+
 ### Change-Detection 
 
 Change-Detection is being run automatically, when inputs of componets change or when certain events are fired, this is explained further in the next section.
