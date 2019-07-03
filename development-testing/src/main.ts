@@ -1,19 +1,29 @@
 import {runApp} from '@lio-spa/core';
 import {AppComponent} from './app/app.component';
-import {HomeComponent} from './app/components/home/home.component';
-import {SecondComponent} from './app/components/second/second.component';
+import {ToDoListComponent} from './app/components/home/to-do-list.component';
+import {LoginComponent} from './app/components/login/login.component';
+import {LoggedInGuard} from './app/guards/logged-in.guard';
+import {AuthService} from './app/services/auth.service';
 
 runApp({
     components: [
         AppComponent,
-        HomeComponent,
-        SecondComponent
+        ToDoListComponent,
     ],
-    services: [],
+    services: [
+        AuthService
+    ],
     routes: [
-        {path: '/', redirectTo: '/home'},
-        {path: '/home', component: HomeComponent},
-        {path: '/second', component: SecondComponent},
+        {path: '/', redirectTo: '/todos'},
+        {
+            path: '/todos',
+            component: ToDoListComponent,
+            canActivate: LoggedInGuard
+        },
+        {
+            path: '/login',
+            component: LoginComponent
+        }
     ],
     enableRouting: true,
     globalStyles: require('./global-styles.scss')
