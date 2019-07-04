@@ -17,17 +17,22 @@ export class AuthService {
     public login(username: string, password: string): boolean {
         this._isLoggedIn = username === this.userdata.username && password === this.userdata.password;
         if (this._isLoggedIn) {
+            sessionStorage.setItem('loggedIn', 'true');
             this.routerService.navigate('/todos');
         }
         return this._isLoggedIn;
     }
 
     public get isLoogedIn(): boolean {
+        if (sessionStorage.getItem('loggedIn') === 'true') {
+            this._isLoggedIn = true;
+        }
         return this._isLoggedIn;
     }
 
     public logout() {
         this._isLoggedIn = false;
+        sessionStorage.removeItem('loggedIn');
         this.routerService.navigate('/login');
     }
 }
