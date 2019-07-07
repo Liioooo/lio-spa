@@ -1,6 +1,7 @@
 import {Component, Controller, lio_html, InjectService, Router} from '@lio-spa/core';
 import {TemplateResult} from 'lit-html';
 import {TodoService} from '../../services/todo.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     selector: 'app-not-done-todos',
@@ -13,6 +14,9 @@ export class NotDoneToDosComponent extends Controller {
 
     @InjectService(Router)
     routerService: Router;
+
+    @InjectService(AuthService)
+    authService: AuthService;
 
     private navigateToDone() {
         this.routerService.navigate('/done-todos');
@@ -27,6 +31,7 @@ export class NotDoneToDosComponent extends Controller {
             <div class="container">
               <app-todo-list [todos]=${this.toDoService.notDoneToDos}></app-todo-list>
               <div class="buttons">
+                <button (click)=${this.authService.logout}>Logout</button>
                 <button (click)=${this.navigateToDone}>Show Done ToDos</button>
                 <button (click)=${this.addNewClicked}>Add New ToDo</button>
               </div>

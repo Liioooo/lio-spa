@@ -52,3 +52,5 @@ When the guard returns `false` the user gets redirected to the provided path.
 You can pass parameters to routes. This Params can be read from the `Router` [Service](services.md).
 
 The currentRouteParam can be read by calling `currentRouteParam` on the service.
+
+### [Next Step: Services](services.md)
