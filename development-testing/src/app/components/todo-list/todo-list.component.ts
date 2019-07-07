@@ -21,7 +21,7 @@ export class TodoListComponent extends Controller {
               ${this.todos.map((todo) => {
                   return lio_html`<div class="todo-entry">
                                     <input type="checkbox" [(lio-model)]=${bind(todo, 'done')}>
-                                    <p>${todo.title}</p>
+                                    <p><a [href]=${`/#/todo/${todo.id}`}>${todo.title}</a></p>
                                   </div>`;
                })}
             </div>
