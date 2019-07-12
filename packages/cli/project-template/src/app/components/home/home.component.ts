@@ -1,4 +1,4 @@
-import {Component, Controller} from '@lio-spa/core/lib';
+import {Component, Controller} from '@lio-spa/core';
 import {html, TemplateResult} from 'lit-html';
 
 @Component({
