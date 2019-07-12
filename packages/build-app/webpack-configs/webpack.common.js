@@ -48,8 +48,8 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: [path.join(__dirname , '..', 'node_modules', '@babel/preset-env')]  // when developing
-                        //presets: ['@babel/preset-env'] //in production
+                        // presets: [path.join(__dirname , '..', 'node_modules', '@babel/preset-env')]  // when developing
+                        presets: ['@babel/preset-env'] //in production
                     }
                 }
             }
@@ -73,15 +73,14 @@ module.exports = {
     resolve: {
         extensions: [ '.tsx', '.ts', '.js' ]
     },
-    // comment out in while developing
     output: {
         filename: 'bundle.[hash].js',
         path: path.join(process.cwd(), 'dist')
-    },
-    resolveLoader: {
-        modules: [
-            path.join(__dirname, '..', 'node_modules')
-        ]
-    },
+    }//,
+    // resolveLoader: {
+    //     modules: [
+    //         path.join(__dirname, '..', 'node_modules')
+    //     ]
+    // },
     // ------------------------------------------ too this line
 };

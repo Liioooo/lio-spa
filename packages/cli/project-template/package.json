@@ -7,9 +7,9 @@
     "build": "lio-spa build"
   },
   "dependencies": {
-    "@lio-spa/core": "^1.2.1",
-    "@lio-spa/cli": "^1.2.1",
-    "@lio-spa/build-app": "^1.2.1",
+    "@lio-spa/core": "^1.1.0",
+    "@lio-spa/cli": "^1.1.0",
+    "@lio-spa/build-app": "^1.1.0",
     "@webcomponents/custom-elements": "^1.2.4",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "core-js": "^3.1.4",
