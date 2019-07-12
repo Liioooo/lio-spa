@@ -19,7 +19,7 @@ $ npm install -g @lio-spa/cli
 $ lio-spa COMMAND
 running command...
 $ lio-spa (-v|--version|version)
-@lio-spa/cli/1.2.1 win32-x64 node-v10.13.0
+@lio-spa/cli/1.1.0 win32-x64 node-v10.13.0
 $ lio-spa --help [COMMAND]
 USAGE
   $ lio-spa COMMAND
@@ -49,7 +49,7 @@ EXAMPLE
   Builds the application
 ```
 
-_See code: [src\commands\build.ts](https://github.com/Liiioooo/lio-spa/blob/v1.2.1/src\commands\build.ts)_
+_See code: [src\commands\build.ts](https://github.com/Liiioooo/lio-spa/blob/v1.1.0/src\commands\build.ts)_
 
 ## `lio-spa help [COMMAND]`
 
@@ -85,7 +85,7 @@ EXAMPLE
   Creates a new workspace and an initial Lio-SPA app in ./myNewApp.
 ```
 
-_See code: [src\commands\new.ts](https://github.com/Liiioooo/lio-spa/blob/v1.2.1/src\commands\new.ts)_
+_See code: [src\commands\new.ts](https://github.com/Liiioooo/lio-spa/blob/v1.1.0/src\commands\new.ts)_
 
 ## `lio-spa serve`
 
@@ -104,5 +104,5 @@ EXAMPLE
   Serves the application in the working directory
 ```
 
-_See code: [src\commands\serve.ts](https://github.com/Liiioooo/lio-spa/blob/v1.2.1/src\commands\serve.ts)_
+_See code: [src\commands\serve.ts](https://github.com/Liiioooo/lio-spa/blob/v1.1.0/src\commands\serve.ts)_
 <!-- commandsstop -->
