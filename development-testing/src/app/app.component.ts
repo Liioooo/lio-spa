@@ -10,8 +10,6 @@ export class AppComponent extends Controller {
 
     render(): TemplateResult {
         return lio_html`
-            <a href="/#/home">Home</a>
-            <a href="/#/second">Second</a>
             <router-outlet></router-outlet>`;
     }
 }

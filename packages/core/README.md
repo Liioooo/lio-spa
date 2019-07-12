@@ -1,2 +1,4 @@
 # lio-spa/core
-Sources for this repo are in the lio-spa [monorepo](https://github.com/Liiioooo/lio-spa)
+Sources for this framework are in the lio-spa [monorepo](https://github.com/Liiioooo/lio-spa).
+
+#### The documentation can also be found there.

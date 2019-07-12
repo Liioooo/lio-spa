@@ -22,7 +22,7 @@ export interface CanActivate {
 
 export interface CanActivateResult {
     canActivate: boolean;
-    redirectToPath: string;
+    redirectToPath?: string;
     redirectToParam?: string;
 }
 

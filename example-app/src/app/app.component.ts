@@ -1,5 +1,5 @@
-import {Component, Controller} from '@lio-spa/core';
-import {html, TemplateResult} from 'lit-html';
+import {Component, Controller, lio_html} from '@lio-spa/core';
+import {TemplateResult} from 'lit-html';
 
 @Component({
     selector: 'app-root',
@@ -9,6 +9,7 @@ import {html, TemplateResult} from 'lit-html';
 export class AppComponent extends Controller {
 
     render(): TemplateResult {
-        return html`<router-outlet></router-outlet>`;
+        return lio_html`
+            <router-outlet></router-outlet>`;
     }
 }

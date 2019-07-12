@@ -1,19 +1,40 @@
 import {runApp} from '@lio-spa/core';
 import {AppComponent} from './app/app.component';
-import {HomeComponent} from './app/components/home/home.component';
-import {SecondComponent} from './app/components/second/second.component';
+import {TodoListComponent} from './app/components/todo-list/todo-list.component';
+import {LoginComponent} from './app/components/login/login.component';
+import {LoggedInGuard} from './app/guards/logged-in.guard';
+import {AuthService} from './app/services/auth.service';
+import {NotDoneToDosComponent} from './app/components/not-done-todos/not-done-todos.component';
 
 runApp({
     components: [
         AppComponent,
-        HomeComponent,
-        SecondComponent
+        TodoListComponent
     ],
-    services: [],
+    services: [
+        AuthService
+    ],
     routes: [
-        {path: '/', redirectTo: '/home'},
-        {path: '/home', component: HomeComponent},
-        {path: '/second', component: SecondComponent},
+        {path: '/', redirectTo: '/todos'},
+        {
+            path: '/login',
+            component: LoginComponent,
+        },
+        {
+            path: '/todos',
+            component: NotDoneToDosComponent,
+            canActivate: LoggedInGuard
+        },
+        {
+            path: '/done-todos',
+            canActivate: LoggedInGuard,
+            lazyLoadRoute: () => import('./lazy-pages/done-todos').then((page) => page.routeRootComp)
+        },
+        {
+            path: '/todo',
+            canActivate: LoggedInGuard,
+            lazyLoadRoute: () => import('./lazy-pages/todo').then((page) => page.routeRootComp)
+        }
     ],
     enableRouting: true,
     globalStyles: require('./global-styles.scss')
